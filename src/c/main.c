@@ -162,6 +162,36 @@ static void start_sync_spinner(void);
 static void stop_sync_spinner(void);
 static void update_alert_visibility(void);
 
+//
+static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
+    // vibration test/sample demo
+    // extracted from ALERT_HIGH - i.e. duplicates....
+            // High alert pattern
+            static const uint32_t high_pattern[] = { 90, 120, 90, 200, 90, 300, 90 };
+            vibes_enqueue_custom_pattern((VibePattern) {
+                .durations = high_pattern,
+                .num_segments = ARRAY_LENGTH(high_pattern)
+            });
+            APP_LOG(APP_LOG_LEVEL_INFO, "High alert vibration DEMO triggered");
+}
+static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
+    // vibration test/sample demo
+    // extracted from ALERT_HIGH - i.e. duplicates....
+            // Low soon alert: accelerating pattern
+            static const uint32_t low_soon_pattern[] = { 70, 300, 70, 200, 70, 120, 70, 80, 70 };
+            vibes_enqueue_custom_pattern((VibePattern) {
+                .durations = low_soon_pattern,
+                .num_segments = ARRAY_LENGTH(low_soon_pattern)
+            });
+            APP_LOG(APP_LOG_LEVEL_INFO, "Low soon alert vibration DEMO triggered");
+}
+
+static void click_config_provider(void *context) {
+  window_single_click_subscribe(BUTTON_ID_UP, (ClickHandler)up_click_handler);
+  //window_single_click_subscribe(BUTTON_ID_SELECT, (ClickHandler)select_click_handler);
+  window_single_click_subscribe(BUTTON_ID_DOWN, (ClickHandler)down_click_handler);
+}
+
 /**
  * Apply colors based on reversed mode to all UI elements
  */
@@ -1498,6 +1528,10 @@ static void init() {
     // Open AppMessage with appropriate buffer sizes
     // Inbox needs to hold chart history (24 values * ~8 chars each = ~192) plus other fields
     app_message_open(512, 64);
+
+    // Define some event handlers for clicks
+    window_set_click_config_provider(s_main_window, (ClickConfigProvider) click_config_provider);
+
 }
 
 /**

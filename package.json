@@ -31,7 +31,7 @@
     "displayName": "T1000",
     "uuid": "e307c458-7520-48cb-9308-815eb50411e9",
     "watchapp": {
-      "watchface": true,
+      "watchface": false,
       "hiddenApp": false,
       "onlyShownOnCommunication": false
     },
