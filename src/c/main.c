@@ -180,7 +180,7 @@ static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
 }
 static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
     // vibration test/sample demo
-    // extracted from ALERT_HIGH - i.e. duplicates....
+    // extracted from ALERT_LOW_SOON - i.e. duplicates....
             // Low soon alert: accelerating pattern
             static const uint32_t low_soon_pattern[] = { 70, 300, 70, 200, 70, 120, 70, 80, 70 };
             vibes_enqueue_custom_pattern((VibePattern) {
