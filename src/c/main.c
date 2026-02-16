@@ -162,7 +162,11 @@ static void start_sync_spinner(void);
 static void stop_sync_spinner(void);
 static void update_alert_visibility(void);
 
-//
+#define WATCHAPP_MODE  // hard coded for now
+#ifdef WATCHAPP_MODE
+// Assume built in app mode, rather than as a watch face so can respond to button presses
+// Map buttons to manual trigger vibration patterns to allow users to feel them as a test
+// NOTE recommend using a different app UUID in package.json
 static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
     // vibration test/sample demo
     // extracted from ALERT_HIGH - i.e. duplicates....
@@ -191,6 +195,7 @@ static void click_config_provider(void *context) {
   //window_single_click_subscribe(BUTTON_ID_SELECT, (ClickHandler)select_click_handler);
   window_single_click_subscribe(BUTTON_ID_DOWN, (ClickHandler)down_click_handler);
 }
+#endif  // WATCHAPP_MODE
 
 /**
  * Apply colors based on reversed mode to all UI elements
@@ -1529,9 +1534,10 @@ static void init() {
     // Inbox needs to hold chart history (24 values * ~8 chars each = ~192) plus other fields
     app_message_open(512, 64);
 
+#ifdef WATCHAPP_MODE
     // Define some event handlers for clicks
     window_set_click_config_provider(s_main_window, (ClickConfigProvider) click_config_provider);
-
+#endif  // WATCHAPP_MODE
 }
 
 /**
