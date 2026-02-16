@@ -1123,7 +1123,7 @@ static void update_time() {
     strftime(date_str, sizeof(date_str), "%a %e", tick_time);
 
     // Combine with two spaces between
-    snprintf(s_time_date_buffer, sizeof(s_time_date_buffer), "%s  %s", time_ptr, date_str);
+    snprintf(s_time_date_buffer, sizeof(s_time_date_buffer), "%s", time_ptr);  // ... or not - BIG time experiment, no date
     text_layer_set_text(s_time_date_layer, s_time_date_buffer);
 }
 
@@ -1366,8 +1366,8 @@ static void main_window_load(Window *window) {
 
     // Time and date layer - single row at top, left-aligned
     s_time_date_layer = create_text_layer(
-        GRect(6, -4, bounds.size.w - 6, 34),
-        fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD),
+        GRect(0, -11, bounds.size.w, 51),
+        fonts_get_system_font(FONT_KEY_ROBOTO_BOLD_SUBSET_49),  // experiment, date will NOT work (TODO new text layer)
         GTextAlignmentLeft
     );
     layer_add_child(window_layer, text_layer_get_layer(s_time_date_layer));
