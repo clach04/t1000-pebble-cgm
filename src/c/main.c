@@ -162,7 +162,7 @@ static void start_sync_spinner(void);
 static void stop_sync_spinner(void);
 static void update_alert_visibility(void);
 
-#define WATCHAPP_MODE  // hard coded for now
+//#define WATCHAPP_MODE  // hard coded for now
 #ifdef WATCHAPP_MODE
 // Assume built in app mode, rather than as a watch face so can respond to button presses
 // Map buttons to manual trigger vibration patterns to allow users to feel them as a test
@@ -1366,18 +1366,19 @@ static void main_window_load(Window *window) {
 
     // Time and date layer - single row at top, left-aligned
     s_time_date_layer = create_text_layer(
-        GRect(0, -11, bounds.size.w, 51),
+        GRect(0, -12, bounds.size.w, 51),
         fonts_get_system_font(FONT_KEY_ROBOTO_BOLD_SUBSET_49),  // experiment, date will NOT work (TODO new text layer)
         GTextAlignmentLeft
     );
     layer_add_child(window_layer, text_layer_get_layer(s_time_date_layer));
 
-    int cgmValueYPos = 24;
+    int cgmValueYPos = 29;
 
     // CGM value layer - centered vertically at y=26, font height ~34px
     s_cgm_value_layer = create_text_layer(
         GRect(4, cgmValueYPos, 110, 48),
-        fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD),
+        //fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD),
+        fonts_get_system_font(FONT_KEY_BITHAM_30_BLACK),
         GTextAlignmentLeft
     );
     text_layer_set_text(s_cgm_value_layer, "");
