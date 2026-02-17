@@ -1378,7 +1378,7 @@ static void main_window_load(Window *window) {
     s_cgm_value_layer = create_text_layer(
         GRect(4, cgmValueYPos, 110, 48),
         //fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD),
-        fonts_get_system_font(FONT_KEY_BITHAM_30_BLACK),
+        fonts_get_system_font(FONT_KEY_BITHAM_30_BLACK),  // smaller than time font for clarity
         GTextAlignmentLeft
     );
     text_layer_set_text(s_cgm_value_layer, "");
