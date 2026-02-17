@@ -53,8 +53,11 @@ var sessionId = null;
 var lastGoodReadingTime = null;
 var pollTimer = null;
 var settings = {
-	accountName: "",
-	password: "",
+	//accountName: "",
+	//password: "",
+	accountName: "fake",
+	password: "fake",
+
 	server: "us",
 	unit: "mgdl",
 	reversed: false,
@@ -132,7 +135,9 @@ function cacheReadings(readings) {
  * Returns null if cache is invalid or stale
  */
 function getCachedReadings() {
-	var stored = localStorage.getItem("cgm-cache");
+	console.log("getCachedReadings() entry");
+	//var stored = localStorage.getItem("cgm-cache");
+	var stored = '{"readings": [{"WT": "Date(' + Date.now().toString() + ')", "Value": 100}]}';
 	if (!stored) {
 		return null;
 	}
