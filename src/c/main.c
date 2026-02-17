@@ -1372,7 +1372,7 @@ static void main_window_load(Window *window) {
     );
     layer_add_child(window_layer, text_layer_get_layer(s_time_date_layer));
 
-    int cgmValueYPos = 29;
+    int cgmValueYPos = 31;
 
     // CGM value layer - centered vertically at y=26, font height ~34px
     s_cgm_value_layer = create_text_layer(
